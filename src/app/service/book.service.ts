@@ -39,4 +39,12 @@ export class BookService {
     }))
   }
 
+  // http://localhost:3000/api/books/:id
+  getOneBook(bookId: number) {
+    return this.httpClient.get(`${baseURL}/books/:${bookId}`).pipe(map((data: any) => {
+      return new Book(data)
+    }))
+  }
+
+
 }

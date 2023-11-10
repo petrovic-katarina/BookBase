@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'books', component: BooksComponent },
   { path: 'add-book', component: BookFormComponent },
+  { path: 'books/:id', component: BookDetailsComponent },
   { path: 'book-details', component: BookDetailsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'prefix' }
 ];
