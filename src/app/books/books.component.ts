@@ -19,7 +19,7 @@ export class BooksComponent implements OnInit, OnDestroy {
 
   queryParams = {
     page: 1,
-    pageSize: 0,
+    pageSize: 10,
     filter: {
       author: '',
       title: '',
@@ -42,6 +42,19 @@ export class BooksComponent implements OnInit, OnDestroy {
       }
     })
   }
+
+  filterBooks(filer: any) {
+    // console.log(filer.target.value);
+    this.queryParams.filter.author = filer.author.target.value;
+    this.queryParams.filter.title = filer.title.target.value;
+    this.getAllBooks();
+  }
+
+  onPaginationLoading(newPageSize: number) {
+    this.queryParams.pageSize = newPageSize;
+    this.getAllBooks();
+  }
+
 
   ngOnDestroy(): void {
     this.booksSubscription.unsubscribe();
