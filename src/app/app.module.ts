@@ -13,6 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BookItemComponent } from './books/book-item/book-item.component';
 import { BookDetailsComponent } from './books/book-details/book-details.component';
+import { PaginationComponent } from './books/pagination/pagination.component';
+
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { BookDetailsComponent } from './books/book-details/book-details.componen
     BookFormComponent,
     BookItemComponent,
     BookDetailsComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,

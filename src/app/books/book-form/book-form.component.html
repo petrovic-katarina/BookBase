@@ -1,5 +1,38 @@
-<div class="row mt-3">
-    <div class="col text-center">
-        <h5>TODO - implementirati formu za dodavanje (i azuriranje) knjige</h5>
+<div class="row" style="display: flex; justify-content: center; margin: 10px;">
+    <div class="col-8">
+        <form [formGroup]="bookForm">
+            <label for="ISBN">ISBN</label>
+            <input type="text" class="form-control" id="ISBN"  placeholder="Enter ISBN" formControlName="ISBN">
+            <small class="text-danger" *ngIf="ISBN?.touched && ISBN?.errors?.['required']">
+                ISBN is required!
+            </small><br>
+      
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title"  placeholder="Enter title" formControlName="title">
+            <small class="text-danger" *ngIf="title?.touched && title?.errors?.['required']">
+                Title is required!
+            </small><br>
+
+            <label for="author">Author</label>
+            <input type="text" class="form-control" id="author"  placeholder="Enter author" formControlName="author">
+            <small class="text-danger" *ngIf="author?.touched && author?.errors?.['required']">
+                Author is required!
+            </small><br>
+
+            <label for="yearOfPublication">Year of publication</label>
+            <input type="number" class="form-control" id="yearOfPublication"  placeholder="Enter year of publication" formControlName="yearOfPublication">
+            <small class="text-danger" *ngIf="yearOfPublication?.touched && yearOfPublication?.errors?.['required']">
+                Year of publication is required!
+            </small><br>
+
+            <label for="publisher">Publisher</label>
+            <input type="text" class="form-control" id="publisher"  placeholder="Enter publisher" formControlName="publisher">
+            <small class="text-danger" *ngIf="publisher?.touched && publisher?.errors?.['required']">
+                Publisher is required!
+            </small><br>
+
+            <button type="submit" class="btn btn-primary" [disabled]="bookForm.invalid" (click)="onSubmit()">Submit</button>
+        </form>
     </div>
 </div>
+

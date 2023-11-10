@@ -4,13 +4,15 @@ import { HomeComponent } from './core/home/home.component';
 import { AboutComponent } from './core/about/about.component';
 import { BooksComponent } from './books/books.component';
 import { BookFormComponent } from './books/book-form/book-form.component';
+import { BookDetailsComponent } from './books/book-details/book-details.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'books', component: BooksComponent },
   { path: 'add-book', component: BookFormComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'prefix'}
+  { path: 'book-details', component: BookDetailsComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'prefix' }
 ];
 
 @NgModule({

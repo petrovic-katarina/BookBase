@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { BookSearchResult } from '../model/book.model';
+import { Book, BookSearchResult } from '../model/book.model';
 
 const baseURL = "http://localhost:3000/api";
 
@@ -21,13 +21,21 @@ export class BookService {
       options = {
         params: new HttpParams()
           .set("filter", params.filter && JSON.stringify(params.filter) || "")
-          .set('page', params.sort || '')
-          .set('pageSize', params.sort || '')
+          .set('page', params.page || '')
+          .set('pageSize', params.pageSize || '')
       }
     }
 
     return this.httpClient.get(`${baseURL}/books`, options).pipe(map((data: any) => {
       return new BookSearchResult(data)
+    }))
+  }
+
+  // POST http://localhost:3000/api/books
+
+  addBook(newBook: Book): Observable<Book> {
+    return this.httpClient.post(`${baseURL}/books`, newBook).pipe(map((data: any) => {
+      return new Book(data)
     }))
   }
 
