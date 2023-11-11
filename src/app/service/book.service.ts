@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Book, BookSearchResult } from '../model/book.model';
+import { Review } from '../model/review.model';
 
 const baseURL = "http://localhost:3000/api";
 
@@ -40,9 +41,24 @@ export class BookService {
   }
 
   // http://localhost:3000/api/books/:id
-  getOneBook(bookId: number) {
-    return this.httpClient.get(`${baseURL}/books/:${bookId}`).pipe(map((data: any) => {
+  getOneBook(bookId: number): Observable<Book> {
+    return this.httpClient.get(`${baseURL}/books/${bookId}`).pipe(map((data: any) => {
       return new Book(data)
+    }))
+  }
+
+  // http://localhost:3000/api/books/:id/reviews
+
+  getBookReviews(bookId: number): Observable<Review[]> {
+    return this.httpClient.get(`${baseURL}/books/${bookId}/reviews`).pipe(map((data: any) => {
+      return data && data.map((elem: any) => new Review(elem)) || []
+    }))
+  }
+
+  // http://localhost:3000/api/reviews/:id
+  deleteReview(reviewId: number): Observable<Review> {
+    return this.httpClient.delete(`${baseURL}/reviews/${reviewId}`).pipe(map((data: any) => {
+      return new Review(data)
     }))
   }
 

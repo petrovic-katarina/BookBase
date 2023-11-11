@@ -5,8 +5,10 @@
     <p class="card-text">ISBN: {{books.ISBN}}</p>
     <p class="card-text">Year of publication: {{books.yearOfPublication}}</p>
     <p class="card-text">Publisher: {{books.publisher}}</p>
+    <p class="card-text">Average score: </p>
+    <!-- <ngb-rating [(rate)]="reviewItem.score" [max]="5" [readonly]="true"></ngb-rating> -->
     <div>
-      <span (click)="onDetailsCliked()" [routerLink]="[books._id]">Details</span>
+      <span [routerLink]="['/books', books._id]">Details</span>
       <span>Edit</span>
     </div>
   </div>

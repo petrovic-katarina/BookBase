@@ -1,0 +1,11 @@
+.card {
+  width: 60rem;
+  margin: 10px 0px;
+  text-align: justify;
+}
+
+.button {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
