@@ -9,15 +9,16 @@ import { Book } from 'src/app/model/book.model';
 export class BookItemComponent implements OnInit {
 
   @Input() books: Book = new Book();
+  @Input() averageScoreReview!: number;
 
-  showScore: boolean = false;
-
+  @Input() hideDetails!: boolean;
 
   constructor() { }
 
   ngOnInit(): void {
 
   }
+
 
 
 

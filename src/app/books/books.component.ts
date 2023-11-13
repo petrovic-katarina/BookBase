@@ -15,6 +15,9 @@ export class BooksComponent implements OnInit, OnDestroy {
 
   booksSubscription: Subscription = new Subscription();
 
+  showDetails: boolean = true;
+
+
   constructor(private service: BookService) { }
 
   queryParams = {

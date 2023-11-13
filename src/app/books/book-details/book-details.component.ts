@@ -18,7 +18,7 @@ export class BookDetailsComponent implements OnInit {
 
   reviews: Review[] = [];
 
-  // @Input() showScore: boolean = false;;
+  averageRating: number = 0;
 
   constructor(private router: Router, private route: ActivatedRoute, private service: BookService, private config: NgbRatingConfig) {
     config.max = 5;
@@ -36,7 +36,7 @@ export class BookDetailsComponent implements OnInit {
   getOneBook() {
     this.service.getOneBook(this.bookId).subscribe({
       next: (book: Book) => {
-        console.log(book);
+        // console.log(book);
         this.book = book;
       },
       error: (response: any) => {
@@ -48,8 +48,10 @@ export class BookDetailsComponent implements OnInit {
   getBookReviews() {
     this.service.getBookReviews(this.bookId).subscribe({
       next: (reviews: Review[]) => {
-        console.log(this.reviews);
+        console.log('Book id: ', this.bookId);
         this.reviews = reviews;
+        console.log('Received Reviews:', reviews);
+        this.calculateAverageRating();
       },
       error: (response: any) => {
         console.log('error: ', response);
@@ -66,6 +68,21 @@ export class BookDetailsComponent implements OnInit {
         console.log('error: ', response);
       }
     })
+  }
+
+  calculateAverageRating(): void {
+
+    if (this.reviews && this.reviews.length > 0) {
+      const totalScore = this.reviews.reduce((sum, review) => {
+        // console.log('Review Score:', review.score);
+        return sum + review.score;
+      }, 0);
+
+      this.averageRating = totalScore / this.reviews.length;
+      console.log('Average Rating:', this.averageRating);
+    } else {
+      this.averageRating = 0;
+    }
   }
 
 }
