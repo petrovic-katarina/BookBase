@@ -56,11 +56,19 @@ export class BookService {
   }
 
   // http://localhost:3000/api/reviews/:id
+
   deleteReview(reviewId: number): Observable<Review> {
     return this.httpClient.delete(`${baseURL}/reviews/${reviewId}`).pipe(map((data: any) => {
       return new Review(data)
     }))
   }
 
+  // Knjiga se ažurira slanjem PUT zahteva na endpoint: http://localhost:3000/api/books/:id.
+
+  updateBook(bookId: number, book: Book): Observable<Book> {
+    return this.httpClient.put(`${baseURL}/books/${bookId}`, book).pipe(map((data: any) => {
+      return new Book(data)
+    }))
+  }
 
 }

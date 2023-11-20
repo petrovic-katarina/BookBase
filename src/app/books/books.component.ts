@@ -17,7 +17,6 @@ export class BooksComponent implements OnInit, OnDestroy {
 
   showDetails: boolean = true;
 
-
   constructor(private service: BookService) { }
 
   queryParams = {

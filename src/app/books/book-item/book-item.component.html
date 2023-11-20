@@ -11,7 +11,7 @@
     </div>
     <div>
       <span [routerLink]="['/books', books._id]" class="link" *ngIf="hideDetails">Details</span>
-      <span class="link">Edit</span>
+      <span class="link" [routerLink]="['/add-book', books._id]">Edit</span>
     </div>
   </div>
 </div>

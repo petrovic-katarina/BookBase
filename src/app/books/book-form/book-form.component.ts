@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Book } from 'src/app/model/book.model';
 import { BookService } from 'src/app/service/book.service';
 
@@ -12,6 +12,7 @@ import { BookService } from 'src/app/service/book.service';
 export class BookFormComponent implements OnInit {
 
   book: Book = new Book();
+  bookId!: number;
 
   bookForm: FormGroup = new FormGroup({
     ISBN: new FormControl('', [Validators.required]),
@@ -37,19 +38,40 @@ export class BookFormComponent implements OnInit {
     return this.bookForm.get('publisher');
   }
 
-  constructor(private service: BookService, private router: Router) { }
+  constructor(private service: BookService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-
+    this.route.params.subscribe((params: Params) => {
+      this.bookId = params['id'];
+      // console.log(this.bookId)
+      this.getBookDetails();
+    })
   }
+
+  getBookDetails(): void {
+    this.service.getOneBook(this.bookId).subscribe((book) => {
+      this.bookForm.patchValue(book);
+    });
+  }
+
+  // TODO radi put ali ne prikazuje dobru knjigu. bookId se ne cuva dobro
 
   onSubmit() {
     this.book = new Book(this.bookForm.value);
 
-    this.service.addBook(this.book).subscribe((book: Book) => {
-      this.bookForm.reset();
-      this.router.navigate(['/book-details']);
-    });
+    if (this.bookId) {
+      this.service.updateBook(this.bookId, this.book).subscribe((book: Book) => {
+        this.book = book;
+        console.log('Book updated successfully:', book);
+        this.router.navigate(['/book-details', this.book._id]);
+      })
+    } else {
+      this.service.addBook(this.book).subscribe((book: Book) => {
+        console.log('Book added successfully:', book);
+        this.bookForm.reset();
+        this.router.navigate(['/book-details', this.book._id]);
+      });
+    }
   }
 
 }
