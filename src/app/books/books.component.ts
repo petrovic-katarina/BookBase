@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Book, BookSearchResult } from '../model/book.model';
 import { BookService } from '../service/book.service';
 import { Subscription } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-books',
@@ -23,8 +24,8 @@ export class BooksComponent implements OnInit, OnDestroy {
     page: 1,
     pageSize: 10,
     filter: {
-      author: '',
-      title: '',
+      author: '' as string | null | undefined,
+      title: '' as string | null | undefined,
     }
   }
 
@@ -45,11 +46,36 @@ export class BooksComponent implements OnInit, OnDestroy {
     })
   }
 
-  filterBooks(filer: any) {
-    // console.log(filer.target.value);
-    this.queryParams.filter.author = filer.author.target.value;
-    this.queryParams.filter.title = filer.title.target.value;
-    this.getAllBooks();
+  searchControl = new FormControl('');
+  authorControl = new FormControl('');
+  titleControl = new FormControl('');
+
+  filterBooks() {
+
+    // OVO RADI ISPOD
+    let author;
+    let title;;
+
+    console.log(this.searchControl);
+
+    // Proveri koji radio button je izabran
+
+    if (this.authorControl.value === 'author') {
+      author = this.searchControl.value;
+      this.queryParams.filter.author = author;
+      console.log('Author ovo', author);
+      console.log('Title ovo', title);
+      this.getAllBooks();
+
+    } else {
+      title = this.searchControl.value
+      this.queryParams.filter.title = title;
+      console.log('Author', author);
+      console.log('Title', title);
+      this.getAllBooks();
+    }
+
+
   }
 
   onPaginationLoading(newPageSize: number) {

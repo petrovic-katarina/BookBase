@@ -1,18 +1,18 @@
 <div class="row" style="margin: 15px 0px;">
     <!-- Search -->
     <div class="col-4">
-        <input type="text" name="" id="" class="form-control">
+        <input type="text" class="form-control" placeholder="Search" [formControl]="searchControl">
     </div>
     <div class="col-2">
-        <button class="btn btn-light">Search</button>
+        <button class="btn btn-light" (click)="filterBooks()">Search</button>
     </div>
     <div class="col-6">
         <div class="form-check form-check-inline">
-            <input type="radio" name="title" class="form-check-input"  value="title">
+            <input type="radio" name="title" class="form-check-input" value="title" [formControl]="titleControl">
             <label for="title">Title</label>
         </div>    
         <div class="form-check form-check-inline">
-            <input type="radio" name="author" class="form-check-input"  value="author">
+            <input type="radio" name="author" class="form-check-input"  value="author" [formControl]="authorControl">
             <label for="author">Author</label>
         </div>    
     </div>

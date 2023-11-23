@@ -43,7 +43,7 @@ export class BookFormComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.bookId = params['id'];
-      // console.log(this.bookId)
+      console.log(this.bookId)
       this.getBookDetails();
     })
   }

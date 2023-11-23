@@ -10,7 +10,7 @@ import { SideBarComponent } from './core/side-bar/side-bar.component';
 import { BooksComponent } from './books/books.component';
 import { BookFormComponent } from './books/book-form/book-form.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookItemComponent } from './books/book-item/book-item.component';
 import { BookDetailsComponent } from './books/book-details/book-details.component';
 import { PaginationComponent } from './books/pagination/pagination.component';
@@ -33,7 +33,8 @@ import { PaginationComponent } from './books/pagination/pagination.component';
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
