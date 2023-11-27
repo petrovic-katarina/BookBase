@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Book } from 'src/app/model/book.model';
 
 @Component({
@@ -14,10 +14,9 @@ export class BookItemComponent implements OnInit {
 
   @Input() hideDetails!: boolean;
 
-  constructor(private router: Router) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-
   }
 
 }

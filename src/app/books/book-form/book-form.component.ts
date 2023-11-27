@@ -43,7 +43,7 @@ export class BookFormComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.bookId = params['id'];
-      console.log(this.bookId)
+      // console.log(this.bookId)
       this.getBookDetails();
     })
   }
@@ -54,7 +54,6 @@ export class BookFormComponent implements OnInit {
     });
   }
 
-  // TODO radi put ali ne prikazuje dobru knjigu. bookId se ne cuva dobro
 
   onSubmit() {
     this.book = new Book(this.bookForm.value);
@@ -62,14 +61,14 @@ export class BookFormComponent implements OnInit {
     if (this.bookId) {
       this.service.updateBook(this.bookId, this.book).subscribe((book: Book) => {
         this.book = book;
-        console.log('Book updated successfully:', book);
-        this.router.navigate(['/book-details', this.book._id]);
+        // console.log('Book updated successfully:', book);
+        this.router.navigate(['/books', this.book._id]);
       })
     } else {
       this.service.addBook(this.book).subscribe((book: Book) => {
-        console.log('Book added successfully:', book);
+        // console.log('Book added successfully:', book);
         this.bookForm.reset();
-        this.router.navigate(['/book-details', this.book._id]);
+        this.router.navigate(['/books', this.book._id]);
       });
     }
   }

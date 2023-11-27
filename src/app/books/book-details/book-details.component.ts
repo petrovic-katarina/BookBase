@@ -26,7 +26,8 @@ export class BookDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      this.bookId = params['id'];
+      this.bookId = +params['id'];
+      // console.log(this.bookId);
       this.getOneBook();
       this.getBookReviews();
     })
@@ -50,7 +51,7 @@ export class BookDetailsComponent implements OnInit {
       next: (reviews: Review[]) => {
         console.log('Book id: ', this.bookId);
         this.reviews = reviews;
-        console.log('Received Reviews:', reviews);
+        // console.log('Received Reviews:', reviews);
         this.calculateAverageRating();
       },
       error: (response: any) => {
@@ -79,7 +80,7 @@ export class BookDetailsComponent implements OnInit {
       }, 0);
 
       this.averageRating = totalScore / this.reviews.length;
-      console.log('Average Rating:', this.averageRating);
+      // console.log('Average Rating:', this.averageRating);
     } else {
       this.averageRating = 0;
     }

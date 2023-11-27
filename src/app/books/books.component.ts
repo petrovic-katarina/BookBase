@@ -51,31 +51,20 @@ export class BooksComponent implements OnInit, OnDestroy {
   titleControl = new FormControl('');
 
   filterBooks() {
-
-    // OVO RADI ISPOD
     let author;
     let title;;
 
-    console.log(this.searchControl);
-
-    // Proveri koji radio button je izabran
-
+    // console.log(this.searchControl);
     if (this.authorControl.value === 'author') {
       author = this.searchControl.value;
       this.queryParams.filter.author = author;
-      console.log('Author ovo', author);
-      console.log('Title ovo', title);
       this.getAllBooks();
 
     } else {
       title = this.searchControl.value
       this.queryParams.filter.title = title;
-      console.log('Author', author);
-      console.log('Title', title);
       this.getAllBooks();
     }
-
-
   }
 
   onPaginationLoading(newPageSize: number) {
